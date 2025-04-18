@@ -36,10 +36,11 @@ const Popularjobs = () => {
         {error && <Text style={styles.headerBtn}>Something went wrong</Text>}
         {!error && !isLoading && (
           <FlatList
-            data={[1,2,3,4,5,6,7,8]}
+            data={data}
             renderItem={({ item }) => (
               <PopularJobCard
                 item={item}
+
               />
             )}
             keyExtractor={item => item?.job_id}
