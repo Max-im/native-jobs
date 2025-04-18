@@ -5,12 +5,13 @@ import { COLORS, SHADOWS, SIZES } from "../../../../constants";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
+    justifyContent: "start",
     alignItems: "center",
     flexDirection: "row",
     padding: SIZES.medium,
     borderRadius: SIZES.small,
     backgroundColor: "#FFF",
+    gap: SIZES.medium,
     ...SHADOWS.medium,
     shadowColor: COLORS.white,
   },
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  logImage: {
+  logoImage: {
     width: "70%",
     height: "70%",
   },

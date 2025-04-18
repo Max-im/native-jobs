@@ -40,7 +40,9 @@ const Popularjobs = () => {
             renderItem={({ item }) => (
               <PopularJobCard
                 item={item}
-
+                key={item?.job_id}
+                selectedJob={item?.job_id}
+                handleNavigate={() => router.push(`/job-details/${item?.job_id}`)}
               />
             )}
             keyExtractor={item => item?.job_id}
