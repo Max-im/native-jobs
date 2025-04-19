@@ -6,12 +6,15 @@ import { useFetch } from "../../hook/useFetch";
 import { COLORS, icons, images, SIZES } from "../../constants";
 import { Company, JobAbout, JobFooter, JobTabs, ScreenHeaderBtn, Specifics } from "../../components";
 
+const tabs = ["About", "Qualifications", "Responsibilities"];
+
 export default function JobDetails() {
     const { id } = useLocalSearchParams();
     const router = useRouter();
 
     const [refresh, setRefresh] = useState(false);
     const {data, isLoading, error, refetch} = useFetch('job-details', { job_id: id });
+    const [activeTab, setActiveTab] = useState(tabs[0]);
 
     const onRefresh = () => { };
 
@@ -35,8 +38,8 @@ export default function JobDetails() {
                     refreshControl={<RefreshControl refreshing={false} onRefresh={() => { }} />}
                 >
                     {isLoading && <ActivityIndicator size='large' color={COLORS.primary} />}
-                    {error && <Text style={styles.headerBtn}>Something went wrong</Text>}
-                    {!error && !isLoading && !data.length && <Text style={styles.headerBtn}>No data</Text>}
+                    {error && <Text>Something went wrong</Text>}
+                    {!error && !isLoading && !data.length && <Text>No data</Text>}
                     {!error && !isLoading && data.length && (
                         <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
                             <Company
@@ -45,7 +48,12 @@ export default function JobDetails() {
                                 job={data[0].job_title}
                                 location={data[0].job_country}
                             />
-                            <JobTabs />
+
+                            <JobTabs 
+                                tabs={tabs}
+                                activeTab={activeTab}
+                                setActiveTab={setActiveTab}
+                            />
                         </View>
                     )}
                 </ScrollView>
